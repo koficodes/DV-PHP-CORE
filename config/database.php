@@ -1,9 +1,9 @@
 <?php
 
-$host = "",
-$database = "",
-$username = "",
-$password = "",
+$host = "";
+$database = "";
+$username = "";
+$password = "";
 $url = getenv("CLEARDB_DATABASE_URL");
 
 
