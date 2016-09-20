@@ -1,24 +1,22 @@
 <?php
 
+$url = getenv("CLEARDB_DATABASE_URL");
 $host = "";
-$database = "";
 $username = "";
 $password = "";
-
-$url = getenv("CLEARDB_DATABASE_URL");
+$database = "";
 
 if ($url !== false) {
-    $url = parse_url($url);
-    $host = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $database = substr($url["path"], 1);
-
+	$url = parse_url($url);
+	$host = $url["host"];
+	$username = $url["user"];
+	$password = $url["pass"];
+	$database = substr($url["path"], 1);
 } else {
-    $host = env('DB_HOST', 'localhost');
-    $username = env('DB_USERNAME', 'forge');
-    $password = env('DB_PASSWORD', '');
-    $database = env('DB_DATABASE', 'forge');
+	$host = env('DB_HOST', 'localhost');
+	$username = env('DB_USERNAME', 'forge');
+	$password = env('DB_PASSWORD', '');
+	$database = env('DB_DATABASE', 'forge');
 }
 
 return [
@@ -47,7 +45,7 @@ return [
     |
     */
 
-    'default' => 'mysql',//env('DB_CONNECTION', 'mysql'),
+    'default' => 'mysql',
 
     /*
     |--------------------------------------------------------------------------
@@ -87,10 +85,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $host,//env('DB_HOST', '127.0.0.1'),
-            'database'  => $database,//env('DB_DATABASE', 'database'),
-            'username'  => $username,//env('DB_USERNAME', 'root'),
-            'password'  => $password,//env('DB_PASSWORD', 'password'),
+            'host'      => $host,
+            'database'  => $database,
+            'username'  => $username,
+            'password'  => $password,
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
@@ -99,10 +97,10 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => $host,//env('DB_HOST', 'localhost'),
-            'database' => $database,//env('DB_DATABASE', 'forge'),
-            'username' => $username,//env('DB_USERNAME', 'forge'),
-            'password' => $password,//env('DB_PASSWORD', ''),
+            'host'     => env('DB_HOST', 'localhost'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', 'secret'),
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
