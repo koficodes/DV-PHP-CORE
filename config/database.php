@@ -4,7 +4,7 @@ $host = "";
 $database = "";
 $username = "";
 $password = "";
-$url = getenv("CLEARDB_DATABASE_URL");
+$url = getenv("DATABASE_URL");
 
 
 if ($url !== false) {
@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'default' => 'mysql',//env('DB_CONNECTION', 'mysql'),
+    'default' => 'pgsql',//env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -99,10 +99,10 @@ return [
 
         'pgsql' => [
             'driver'   => 'pgsql',
-            'host'     => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host'     => $host,//env('DB_HOST', 'localhost'),
+            'database' => $database,//env('DB_DATABASE', 'forge'),
+            'username' => $username,//env('DB_USERNAME', 'forge'),
+            'password' => $password,//env('DB_PASSWORD', ''),
             'charset'  => 'utf8',
             'prefix'   => '',
             'schema'   => 'public',
