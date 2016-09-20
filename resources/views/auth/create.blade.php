@@ -30,7 +30,7 @@
     <div class="wrapper">
       <div class="row">
         <a id="imgtop" href="https://devless.io">
-          <img src="{{Request::secure(url('/img/logo.png'))}}" height="50" alt="Devless">
+          <img src="{{ Request::secure(Request::root()).'/img/logo.png'}}" height="50" alt="Devless">
           <span class="brand-name" style="font-size: 50px; color: #fff; position: relative; top: 10px;">Devless</span>
         </a>
         <div class="col-lg-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
