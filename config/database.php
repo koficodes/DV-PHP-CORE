@@ -1,5 +1,26 @@
 <?php
 
+$host = "",
+$database = "",
+$username = "",
+$password = "",
+$url = getenv("CLEARDB_DATABASE_URL");
+
+
+if ($url !== false) {
+    $url = parse_url($url);
+    $host = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $database = substr($url["path"], 1);
+
+} else {
+    $host = env('DB_HOST', 'localhost');
+    $username = env('DB_USERNAME', 'forge');
+    $password = env('DB_PASSWORD', '');
+    $database = env('DB_DATABASE', 'forge');
+}
+
 return [
 
     /*
@@ -26,7 +47,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => 'mysql',//env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -66,11 +87,10 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', '127.0.0.1'),
-            'database'  => env('DB_DATABASE', 'database'),
-            'username'  => env('DB_USERNAME', 'root'),
-            'password'  => env('DB_PASSWORD', 'password'),
-            'port'      => env('DB_PORT', '3306'),
+            'host'      => $host,//env('DB_HOST', '127.0.0.1'),
+            'database'  => $database,//env('DB_DATABASE', 'database'),
+            'username'  => $username,//env('DB_USERNAME', 'root'),
+            'password'  => $password,//env('DB_PASSWORD', 'password'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
