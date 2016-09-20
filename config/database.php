@@ -4,8 +4,8 @@ $host = "";
 $database = "";
 $username = "";
 $password = "";
-$url = getenv("DATABASE_URL");
 
+$url = getenv("CLEARDB_DATABASE_URL");
 
 if ($url !== false) {
     $url = parse_url($url);
@@ -47,7 +47,7 @@ return [
     |
     */
 
-    'default' => 'pgsql',//env('DB_CONNECTION', 'mysql'),
+    'default' => 'mysql',//env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
