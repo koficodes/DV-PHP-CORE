@@ -167,8 +167,8 @@
                 </div>
             </div>
         </div>
-        <script src="{{ url('/js/src-min-noconflict/ace.js') }}" type="text/javascript" charset="utf-8"></script>
-        <script src="{{ url('/js/ace/jquery-1.8.3.min.js') }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ Request::secure(url('/js/src-min-noconflict/ace.js')) }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ Request::secure(url('/js/ace/jquery-1.8.3.min.js')) }}" type="text/javascript" charset="utf-8"></script>
         <script>
 
         window.onload(function () {

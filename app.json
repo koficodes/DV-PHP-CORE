@@ -15,6 +15,12 @@
     "scripts": {
         "postdeploy": "php artisan migrate"
     },
+    "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-php"  
+        }
+          
+    ],
     "success_url": "/"
 }
 
