@@ -11,16 +11,15 @@
     "website": "https://devless.io",
     "repository": "https://github.com/DevlessTeam/DV-PHP-CORE",
     "logo": "https://devless.io/images/dv_logo.jpg",
-    "addons":["cleardb"],
+    "addons":["jawsdb"],
     "scripts": {
         "postdeploy": "php artisan migrate"
     },
     "buildpacks": [
         {
-            "url": "https://github.com/heroku/heroku-buildpack-php"  
+            "url": "https://github.com/heroku/heroku-buildpack-php"
         }
-          
+
     ],
     "success_url": "/"
 }
-
