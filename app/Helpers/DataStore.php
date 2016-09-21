@@ -220,7 +220,6 @@ class DataStore extends Helper
         $adminData = \DB::table('users')->where('role', 1)->select('username', 'email')->first();
         $appData   =  \DB::table('apps')->select('name', 'description', 'token')->first();
 
-
         $instanceInfo['app'] = $appData;
         $instanceInfo['admin'] = $adminData;
 
