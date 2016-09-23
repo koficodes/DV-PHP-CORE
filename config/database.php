@@ -1,6 +1,6 @@
 <?php
 
-$url = getenv("JAWSDB_URL");
+$url = getenv("JAWSDB_MARIA_URL");
 $host = "";
 $username = "";
 $password = "";
