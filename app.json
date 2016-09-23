@@ -12,7 +12,6 @@
     "repository": "https://github.com/DevlessTeam/DV-PHP-CORE",
     "logo": "https://devless.io/images/dv_logo.jpg",
     "addons": [
-      "jawsdb-maria",
       {
         "plan": "jawsdb-maria:kitefin"
       }
