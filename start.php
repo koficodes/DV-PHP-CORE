@@ -20,7 +20,7 @@ require __DIR__.'/bootstrap/autoload.php';
             ];
             function edit($content){
                 $filename = __DIR__.'/config/database.php';
-                //chmod($filename, 0777); 
+                chmod($filename, 0777); 
                 foreach($content as $line => $modifiedContent ) {
                     $line_i_am_looking_for = $line-1;
                     $lines = file( $filename , FILE_IGNORE_NEW_LINES );
