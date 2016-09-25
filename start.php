@@ -1,25 +1,12 @@
 <?php
-
+require __DIR__.'/bootstrap/autoload.php';
+        
         $username = substr(md5(uniqid(rand(1,6))), 0, 13);
         $password = substr(md5(uniqid(rand(1,6))), 0, 13);
         $database = substr(md5(uniqid(rand(1,6))), 0, 13);
-        $output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
+        //$output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
         set_dbDetails($database, $username, $password);
-        \Config::set('database.connections.cc', array(
-                'driver'    => 'mysql',
-                'host'      => '45.33.95.89',
-                'database'  => $database,
-                'username'  => $username,
-                'password'  => $password,
-                    'charset'   => 'utf8',
-                'collation' => 'utf8_general_ci',
-                'prefix'    => '',
-        ));
-        \Config::set('database.default', 'cc');
-        
-        \Artisan::call('migrate');
-        
-        
+        shell_exec('php artisan migrate');
         
         function set_dbDetails($database, $username, $password)
         {
@@ -32,7 +19,7 @@
 
             ];
             function edit($content){
-                $filename = base_path().'/config/database.php';
+                $filename = __DIR__.'/config/database.php';
                 //chmod($filename, 0777); 
                 foreach($content as $line => $modifiedContent ) {
                     $line_i_am_looking_for = $line-1;
