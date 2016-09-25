@@ -117,9 +117,9 @@ class UserController extends Controller
            
         ];
         function edit($content){
-            
+            $filename = base_path().'/config/database.php';
+            chmod($filename, 0755); 
             foreach($content as $line => $modifiedContent ) {
-                $filename = base_path().'/config/database.php';
                 $line_i_am_looking_for = $line-1;
                 $lines = file( $filename , FILE_IGNORE_NEW_LINES );
                 $lines[$line_i_am_looking_for] = $modifiedContent;
