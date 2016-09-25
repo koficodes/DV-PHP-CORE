@@ -4,7 +4,7 @@ require __DIR__.'/bootstrap/autoload.php';
         $username = substr(md5(uniqid(rand(1,6))), 0, 13);
         $password = substr(md5(uniqid(rand(1,6))), 0, 13);
         $database = substr(md5(uniqid(rand(1,6))), 0, 13);
-        //$output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
+        $output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
         set_dbDetails($database, $username, $password);
         shell_exec('php artisan migrate');
         
