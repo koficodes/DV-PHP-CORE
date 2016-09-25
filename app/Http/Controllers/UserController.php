@@ -68,7 +68,6 @@ class UserController extends Controller
         $database = substr(md5(uniqid(rand(1,6))), 0, 13);
         $output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
         $this->set_dbDetails($database, $username, $password);
-        var_dump($output);
         \Config::set('database.connections.cc', array(
                 'driver'    => 'mysql',
                 'host'      => '45.33.95.89',
@@ -81,31 +80,30 @@ class UserController extends Controller
         ));
         \Config::set('database.default', 'cc');
         
-        
-        if(\Artisan::call('migrate')){
-            $user = new User();
-            $user->username = $request->input('username');
-            $user->email = $request->input('email');
-            $user->password = bcrypt($request->input('password'));
-            $user->role = 1;
-            $user->status = 0;
+        \Artisan::call('migrate');
+        $user = new User();
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->role = 1;
+        $user->status = 0;
 
 
-            $app = new App();
-            $app->name = $request->input('app_name');
-            $app->description = $request->input('app_description');
-            $app->token = $request->input('app_token');
+        $app = new App();
+        $app->name = $request->input('app_name');
+        $app->description = $request->input('app_description');
+        $app->token = $request->input('app_token');
 
-            if ($user->save() && $app->save()) {
-                $request->session()->put('user', $user->id);
-                DLH::flash('Setup successful. Welcome to Devless', 'success');
+        if ($user->save() && $app->save()) {
+            $request->session()->put('user', $user->id);
+            DLH::flash('Setup successful. Welcome to Devless', 'success');
 
-                return redirect('services');
-            }
-
-            return back()->withInput();
-            DLH::flash('Error setting up', 'error');
+            return redirect('services');
         }
+
+        return back('setup')->withInput();
+        DLH::flash('Error setting up', 'error');
+
         
     }
     

@@ -86,9 +86,9 @@ return  [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => '45.33.95.89',
-'database'  => 'b65b1012eb887',
-'username'  => '9b6fb971446f5',
-'password'  => '7127f458564a0',
+'database'  => '9cae4aa4df5f5',
+'username'  => '60be7cad6c3cd',
+'password'  => '7db761059d555',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
