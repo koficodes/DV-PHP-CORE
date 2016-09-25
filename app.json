@@ -12,7 +12,7 @@
     "repository": "https://github.com/DevlessTeam/DV-PHP-CORE",
     "logo": "https://devless.io/images/dv_logo.jpg",
     "scripts": {
-        
+        "postdeploy": "php start.php"
     },
     "buildpacks": [
         {
