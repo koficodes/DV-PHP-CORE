@@ -9,8 +9,8 @@
         </div>
     </div>
 </div>
-<script src="{{url('/js/jquery-1.10.2.min.js')}}"></script>
-<script src="{{url('/js/bootstrap.min.js')}}"></script>
+<script src="{{Request::secure(Request::root()).'/js/jquery-1.10.2.min.js'}}"></script>
+<script src="{{Request::secure(Request::root()).'/js/bootstrap.min.js'}}"></script>
 <script charset="utf-8">
         $(function modal() {
             $('#flash_msg').modal({
@@ -34,7 +34,7 @@
     <div class="wrapper">
       <div class="row">
         <a href="https://devless.io">
-          <img src="{{url('/img/logo.png')}}" height="50" alt="Devless">
+          <img src="{{Request::secure(Request::root()).'/img/logo.png'}}" height="50" alt="Devless">
           <span class="brand-name" style="font-size: 50px; color: #fff; position: relative; top: 10px;">Devless</span>
         </a>
           <center>
