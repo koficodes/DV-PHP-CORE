@@ -62,7 +62,6 @@ class UserController extends Controller
 
     public function post_register(Request $request)
     {
-
         $username = substr(md5(uniqid(rand(1,6))), 0, 13);
         $password = substr(md5(uniqid(rand(1,6))), 0, 13);
         $database = substr(md5(uniqid(rand(1,6))), 0, 13);

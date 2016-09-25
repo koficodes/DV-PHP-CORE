@@ -85,10 +85,10 @@ return  [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => '45.33.95.89',
-'database'  => '9cae4aa4df5f5',
-'username'  => '60be7cad6c3cd',
-'password'  => '7db761059d555',
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => env('DB_DATABASE', 'forge'),
+            'username'  =>  env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', 'secret'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
