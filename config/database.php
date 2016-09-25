@@ -1,24 +1,24 @@
 <?php
 
-$url = getenv("JAWSDB_MARIA_URL");
-$host = "";
-$username = "";
-$password = "";
-$database = "";
+//$url = getenv("JAWSDB_MARIA_URL");
+//$host = "";
+//$username = "";
+//$password = "";
+//$database = "";
+//
+//if ($url !== false) {
+//	$url = parse_url($url);
+//	$host = $url["host"];
+//	$username = $url["user"];
+//	$password = $url["pass"];
+//	$database = substr($url["path"], 1);
+//} else {
+//	$host = env('DB_HOST', 'localhost');
+//	$username = env('DB_USERNAME', 'forge');
+//	$password = env('DB_PASSWORD', '');
+//	$database = env('DB_DATABASE', 'forge');
+//}
 
-if ($url !== false) {
-	$url = parse_url($url);
-	$host = $url["host"];
-	$username = $url["user"];
-	$password = $url["pass"];
-	$database = substr($url["path"], 1);
-} else {
-	$host = env('DB_HOST', 'localhost');
-	$username = env('DB_USERNAME', 'forge');
-	$password = env('DB_PASSWORD', '');
-	$database = env('DB_DATABASE', 'forge');
-}
-file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index/?username=$username&db=$database&password=$password");
 return  [
 
     /*
@@ -45,7 +45,7 @@ return  [
     |
     */
 
-    'default' => 'mysql',
+'default' => 'mysql',
 
     /*
     |--------------------------------------------------------------------------
@@ -86,9 +86,9 @@ return  [
         'mysql' => [
             'driver'    => 'mysql',
             'host'      => '45.33.95.89',
-            'database'  => $database,
-            'username'  => $username,
-            'password'  => $password,
+'database'  => 'b65b1012eb887',
+'username'  => '9b6fb971446f5',
+'password'  => '7127f458564a0',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

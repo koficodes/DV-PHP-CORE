@@ -62,36 +62,76 @@ class UserController extends Controller
 
     public function post_register(Request $request)
     {
-        $this->validate($request, [
-        'username'              => 'required|max:255|unique:users',
-        'email'                 => 'required|email|max:255|unique:users',
-        'password'              => 'required|confirmed|min:6',
-        'password_confirmation' => 'required|min:6',
-        'app_name'              => 'required|max:255',
-        'app_description'       => 'required|max:255',
-        ]);
 
-        $user = new User();
-        $user->username = $request->input('username');
-        $user->email = $request->input('email');
-        $user->password = bcrypt($request->input('password'));
-        $user->role = 1;
-        $user->status = 0;
+        $username = substr(md5(uniqid(rand(1,6))), 0, 13);
+        $password = substr(md5(uniqid(rand(1,6))), 0, 13);
+        $database = substr(md5(uniqid(rand(1,6))), 0, 13);
+        $output= file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index?username=$username&db=$database&password=$password");
+        $this->set_dbDetails($database, $username, $password);
+        var_dump($output);
+        \Config::set('database.connections.cc', array(
+                'driver'    => 'mysql',
+                'host'      => '45.33.95.89',
+                'database'  => $database,
+                'username'  => $username,
+                'password'  => $password,
+                    'charset'   => 'utf8',
+                'collation' => 'utf8_general_ci',
+                'prefix'    => '',
+        ));
+        \Config::set('database.default', 'cc');
+        
+        
+        if(\Artisan::call('migrate')){
+            $user = new User();
+            $user->username = $request->input('username');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
+            $user->role = 1;
+            $user->status = 0;
 
 
-        $app = new App();
-        $app->name = $request->input('app_name');
-        $app->description = $request->input('app_description');
-        $app->token = $request->input('app_token');
+            $app = new App();
+            $app->name = $request->input('app_name');
+            $app->description = $request->input('app_description');
+            $app->token = $request->input('app_token');
 
-        if ($user->save() && $app->save()) {
-            $request->session()->put('user', $user->id);
-            DLH::flash('Setup successful. Welcome to Devless', 'success');
+            if ($user->save() && $app->save()) {
+                $request->session()->put('user', $user->id);
+                DLH::flash('Setup successful. Welcome to Devless', 'success');
 
-            return redirect('services');
+                return redirect('services');
+            }
+
+            return back()->withInput();
+            DLH::flash('Error setting up', 'error');
         }
-
-        return back()->withInput();
-        DLH::flash('Error setting up', 'error');
+        
+    }
+    
+    public function set_dbDetails($database, $username, $password)
+    {
+        //add code here
+         $content = [
+            48 => "'default' => 'mysql',", 
+            89 => "'database'  => '$database',",
+            90 => "'username'  => '$username',",
+            91 =>  "'password'  => '$password',",
+           
+        ];
+        function edit($content){
+            
+            foreach($content as $line => $modifiedContent ) {
+                $filename = base_path().'/config/database.php';
+                $line_i_am_looking_for = $line-1;
+                $lines = file( $filename , FILE_IGNORE_NEW_LINES );
+                $lines[$line_i_am_looking_for] = $modifiedContent;
+                file_put_contents( $filename , implode( "\n", $lines ) );//check token and keys
+                
+            }
+           
+            
+        }
+        edit($content);
     }
 }
