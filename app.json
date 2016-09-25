@@ -11,11 +11,6 @@
     "website": "https://devless.io",
     "repository": "https://github.com/DevlessTeam/DV-PHP-CORE",
     "logo": "https://devless.io/images/dv_logo.jpg",
-    "addons": [
-      {
-        "plan": "jawsdb-maria:kitefin"
-      }
-    ],
     "scripts": {
         "postdeploy": "php artisan migrate"
     },
