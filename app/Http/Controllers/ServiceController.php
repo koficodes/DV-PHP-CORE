@@ -12,6 +12,7 @@ use Devless\Script\ScriptHandler as script;
 use App\Http\Controllers\ViewController as DvViews;
 use App\Http\Controllers\RpcController as Rpc;
 
+
 class ServiceController extends Controller
 {
     
@@ -491,5 +492,22 @@ class ServiceController extends Controller
 
         return $output;
 
+    }
+    
+    public function service_views()
+    {       
+            
+            $folder_path = config('devless')['views_directory'];
+            $db_name = \Config::get('database.connections.'.\Config::get('database.default').'.database');
+            
+            //get db name 
+            DLH::zip_folder($folder_path, 'download.zip');
+            $mode = 0777;
+            $zip = $folder_path.'/'.'download.zip';
+            chmod($zip, $mode);
+            copy($zip, public_path().'/download.zip');
+            unlink($zip);
+            return "created";
+       
     }
 }

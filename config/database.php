@@ -86,6 +86,7 @@ return  [
         'mysql' => [
             'driver'    => 'mysql',
 
+
             'host'      => '45.33.95.89',//env('DB_HOST', 'localhost'),
             'database'  => '529923215cc36',
             'username'  => 'a71b7b5259c8e',

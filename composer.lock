@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-
     "hash": "b5e6469e97fc2050eb91f109b1d33554",
     "content-hash": "69c38a2c31a5d5c9407268d4a75bdde0",
     "packages": [
@@ -294,6 +293,53 @@
                 "utils"
             ],
             "time": "2015-07-23 00:54:12"
+        },
+        {
+            "name": "devless/php-sdk",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DevlessTeam/DV-PHP-SDK.git",
+                "reference": "a8b04ea1b3a437d5b47c9fa931694e85c44cf534"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DevlessTeam/DV-PHP-SDK/zipball/a8b04ea1b3a437d5b47c9fa931694e85c44cf534",
+                "reference": "a8b04ea1b3a437d5b47c9fa931694e85c44cf534",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Devless\\SDK\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "APACHE 2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Eddymens",
+                    "email": "edmond@devless.io",
+                    "homepage": "https://devless.io",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Official Devless SDK",
+            "homepage": "https://devless.io",
+            "keywords": [
+                "Devless",
+                "php",
+                "sdk"
+            ],
+            "time": "2016-09-26 12:44:40"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2940,16 +2986,16 @@
         },
         {
             "name": "phpspec/phpspec",
-            "version": "2.5.2",
+            "version": "2.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/phpspec.git",
-                "reference": "7e7e104de01b5052195cefefcd0b29f1add4c116"
+                "reference": "153ebd99d9b842e0c99a024c41f970d79db46475"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/7e7e104de01b5052195cefefcd0b29f1add4c116",
-                "reference": "7e7e104de01b5052195cefefcd0b29f1add4c116",
+                "url": "https://api.github.com/repos/phpspec/phpspec/zipball/153ebd99d9b842e0c99a024c41f970d79db46475",
+                "reference": "153ebd99d9b842e0c99a024c41f970d79db46475",
                 "shasum": ""
             },
             "require": {
@@ -3014,7 +3060,7 @@
                 "testing",
                 "tests"
             ],
-            "time": "2016-09-04 11:59:15"
+            "time": "2016-09-26 20:28:11"
         },
         {
             "name": "phpspec/prophecy",
