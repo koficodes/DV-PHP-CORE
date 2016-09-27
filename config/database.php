@@ -85,10 +85,12 @@ return  [
 
         'mysql' => [
             'driver'    => 'mysql',
+
             'host'      => '45.33.95.89',//env('DB_HOST', 'localhost'),
-'database'  => '529923215cc36',
-'username'  => 'a71b7b5259c8e',
-'password'  => 'afd6e2e6b87cc',
+            'database'  => '529923215cc36',
+            'username'  => 'a71b7b5259c8e',
+            'password'  => 'afd6e2e6b87cc',
+
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
