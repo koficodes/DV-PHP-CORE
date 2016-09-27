@@ -12,10 +12,10 @@ require __DIR__.'/bootstrap/autoload.php';
         {
             //add code here
              $content = [
-                48 => "'default' => 'mysql',", 
-                89 => "'database'  => '$database',",
-                90 => "'username'  => '$username',",
-                91 =>  "'password'  => '$password',",
+                29 => "'default' => 'mysql',", 
+                72 => "'database'  => '$database',",
+                73 => "'username'  => '$username',",
+                74 =>  "'password'  => '$password',",
 
             ];
             function edit($content){

@@ -1,24 +1,5 @@
 <?php
 
-//$url = getenv("JAWSDB_MARIA_URL");
-//$host = "";
-//$username = "";
-//$password = "";
-//$database = "";
-//
-//if ($url !== false) {
-//	$url = parse_url($url);
-//	$host = $url["host"];
-//	$username = $url["user"];
-//	$password = $url["pass"];
-//	$database = substr($url["path"], 1);
-//} else {
-//	$host = env('DB_HOST', 'localhost');
-//	$username = env('DB_USERNAME', 'forge');
-//	$password = env('DB_PASSWORD', '');
-//	$database = env('DB_DATABASE', 'forge');
-//}
-
 return  [
 
     /*
@@ -45,7 +26,7 @@ return  [
     |
     */
 
-'default' => 'mysql',
+    'default' => 'mysql',
 
     /*
     |--------------------------------------------------------------------------
@@ -105,19 +86,16 @@ return  [
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', 'secret'),
             'charset'  => 'utf8',
-            'prefix'   => '',
-            'schema'   => 'public',
+            'sqlsrv' => [
+                'driver'   => 'sqlsrv',
+                'host'     => env('DB_HOST', 'localhost'),
+                'database' => env('DB_DATABASE', 'forge'),
+                'username' => env('DB_USERNAME', 'forge'),
+                'password' => env('DB_PASSWORD', ''),
+                'charset'  => 'utf8',
+                'prefix'   => '',
         ],
-
-        'sqlsrv' => [
-            'driver'   => 'sqlsrv',
-            'host'     => env('DB_HOST', 'localhost'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset'  => 'utf8',
-            'prefix'   => '',
-        ],
+            ],
 
     ],
 
