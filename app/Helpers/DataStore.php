@@ -31,9 +31,6 @@ class DataStore extends Helper
             self::$payload['service_name'] = $serviceName;
             self::$payload['params'] = ['table' => [$tableName]];
             self::$payload['service'] = $service;
-            
-            //disregard access rights 
-            Session()->put('user', 1);
 
         };
 
@@ -148,7 +145,7 @@ class DataStore extends Helper
 
         $deletePayload =
             [['name' => $tableName, 'params' => $parameters ]];
-
+        
         $result = $service->assign_to_service($payload['service_name'], self::$resourceType, $method, $deletePayload);
 
         return $result;
@@ -204,14 +201,11 @@ class DataStore extends Helper
      */
     private static function bindToParams($methodName, $args)
     {
-            
-        if(!isset(self::$payload['params'][$methodName] )) {
-                self::$payload['params'][$methodName] = ($methodName == "where")?
-                                    []:'';
-        }
-        self::$payload['params'][$methodName] = ($methodName == "where")?
-                                    array_push(self::$payload['params'][$methodName], $args):$args;
-        
+
+        self::$payload['params'][$methodName] =
+            (null == isset(self::$payload['params'][$methodName]))?  self::$payload['params'][$methodName] = [] :self::$payload['params'][$methodName] ;
+
+        array_push(self::$payload['params'][$methodName], $args);
 
         return (is_null(self::$instance))? self::$instance = new self() : self::$instance;
     }
@@ -222,11 +216,9 @@ class DataStore extends Helper
      */
     public static function instanceInfo()
     {
+        
         $adminData = \DB::table('users')->where('role', 1)
-
                 ->select('username', 'email')->first();
-
-        // $adminData = \DB::table('users')->where('role', 1)->select('username', 'email')->first();
         $appData   =  \DB::table('apps')->select('name', 'description', 'token')->first();
 
         $instanceInfo['app'] = $appData;
