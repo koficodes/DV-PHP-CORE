@@ -206,13 +206,12 @@ class DataStore extends Helper
     {
             
         if(!isset(self::$payload['params'][$methodName] )) {
-                if($methodName == "where") {
-                    self::$payload['params'][$methodName]  = [];
-                } else {
-                    self::$payload['params'][$methodName] = '';
-                }
+                self::$payload['params'][$methodName] = ($methodName == "where")?
+                                    []:'';
         }
-        array_push(self::$payload['params'][$methodName], $args);
+        self::$payload['params'][$methodName] = ($methodName == "where")?
+                                    array_push(self::$payload['params'][$methodName], $args):$args;
+        
 
         return (is_null(self::$instance))? self::$instance = new self() : self::$instance;
     }
