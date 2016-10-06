@@ -80,8 +80,10 @@ EOT;
             $_____midRules = $rules;
             $_____mindEvent = $EVENT; 
            $declarationString = '';
-           $declarationString = DataStore::getDump($_____service_name.'_script_vars');
-           eval($declarationString->value);
+           if($declarationString = DataStore::getDump($_____service_name.'_script_vars')) {
+               eval($declarationString->value);
+           }
+           
            $rules = $_____midRules;
            $EVENT = $_____mindEvent;
            //next explode variables and make them available 
