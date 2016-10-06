@@ -226,4 +226,52 @@ class DataStore extends Helper
 
         return $instanceInfo;
     }
+    
+    /**
+     * get data from Devless dump 
+     * @return boolean
+     */
+    public static function getDump($key)
+    {
+        $dump = \DB::table('devless_dump')->where('key', $key)->first();
+        
+        return $dump;
+    }
+    
+    
+     /**
+     * add data to devless dump 
+     * @return boolean
+     */
+    public static function setDump($key, $value)
+    {
+        
+        $status = \DB::table('devless_dump')->insert(['key'=>$key, 'value'=>$value]);
+       
+        return $status;
+    }
+    
+    /**
+     * get data from Devless dump 
+     * @return boolean
+     */
+    public static function updateDump($key, $value)
+    {
+        $status = \DB::table('devless_dump')->where('key', $key)->update(['value'=>$value]);
+        
+        return $status;
+    }
+    
+     
+    /**
+     * destroy devless dump 
+     * @return boolean
+     */
+    public static function destroyDump($key)
+    {
+        $status = \DB::table('devless_dump')->where('key', $key)->delete();
+        
+        return $status;
+
+    }
 }
