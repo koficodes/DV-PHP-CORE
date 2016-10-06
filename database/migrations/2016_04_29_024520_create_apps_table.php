@@ -16,6 +16,7 @@ class CreateAppsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->text('notes');
             $table->string('token')->default(md5(uniqid()));
             $table->timestamps();
         });

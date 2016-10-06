@@ -15,7 +15,7 @@ class CreateTableMetaTable extends Migration
         Schema::create('table_metas', function ($table) {
             $table->increments('id');
             $table->string('table_name');
-            $table->json('schema');
+            $table->text('schema');
             $table->integer('count')->nullable();
             $table->boolean('access')->nullable();
             $table->integer('service_id')->unsigned();

@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->string('last_name')->nullable();
             $table->boolean('status');
+            $table->text('notes');
             $table->string('session_token')->nullable();
             $table->string('session_time')->nullable();
             $table->rememberToken();
