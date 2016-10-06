@@ -3,6 +3,7 @@
 use Validator;
 use App\Service;
 use App\Helpers\Helper;
+use App\Helpers\DataStore;
 use Illuminate\Http\Request;
 use App\Service as serviceModel;
 use Devless\Schema\DbHandler as Db;
@@ -153,7 +154,13 @@ class ServiceController extends Controller
     {
         if ($service = Service::findOrFail($id)) {
             if ($request->input('call_type') =='solo') {
-                $service->script = $request->input('script');
+                $script = $request->input('script');
+                $service_name = $service->name;
+                $db = new DataStore();
+                $var_init = $this->var_init($script);
+                $db::setDump($service_name.'_script_vars', $var_init);
+                $service->script = $script;
+                        
                 $service->save();
                 return Response::respond(626);
             }
@@ -494,6 +501,10 @@ class ServiceController extends Controller
 
     }
     
+    /**
+     * create service views 
+     * @return string
+     */
     public function service_views()
     {       
             
@@ -509,5 +520,22 @@ class ServiceController extends Controller
             unlink($zip);
             return "created";
        
+    }
+    
+    public function var_init($code)
+    {
+        $declarationString = '';
+        $tokens = token_get_all('<?php '.$code);
+        foreach ($tokens as $token) {
+                if (is_array($token)) {
+                    $start = 1;
+                    if($token[0] == 312) {
+                         $variable = substr($token[1], $start);
+                         $declarationString .= "$$variable = null;";
+                    }
+
+                }
+        }
+        return $declarationString;
     }
 }

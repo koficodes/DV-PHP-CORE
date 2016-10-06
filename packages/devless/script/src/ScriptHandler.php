@@ -2,6 +2,7 @@
 
 namespace Devless\Script;
 
+use App\Helpers\DataStore;
 use App\Helpers\Helper as Helper;
 use App\Helpers\Messenger as messenger;
 use App\Http\Controllers\ServiceController as Service;
@@ -61,8 +62,8 @@ class ScriptHandler
             'method' => $payload['method'],
             'params' => '',
             'script' => $payload['script'],
-            'user_id' => $user_cred['id'],
-             'user_token' => $user_cred['token'],
+//            'user_id' => $user_cred['id'],
+//             'user_token' => $user_cred['token'],
             'requestType' => $Dvresource,
         ];
 
@@ -72,15 +73,17 @@ class ScriptHandler
 $code = <<<EOT
 $payload[script];
 EOT;
-        $exec = function () use($code, $rules, $EVENT) {
-            $midRules = $rules;
-            $mindEvent = $EVENT; 
-           $tokens = token_get_all('<?php '.$code);
+        
+        $_____service_name = $payload['service_name'];
+        $exec = function () use($code, $rules, $EVENT, $_____service_name) {
+            
+            $_____midRules = $rules;
+            $_____mindEvent = $EVENT; 
            $declarationString = '';
-           $declarationString = initializedVariables();
-           eval($declarationString);
-           $rules = $midRules;
-           $EVENT = $mindEvent;
+           $declarationString = DataStore::getDump($_____service_name.'_script_vars');
+           eval($declarationString->value);
+           $rules = $_____midRules;
+           $EVENT = $_____mindEvent;
            //next explode variables and make them available 
            eval($code);        
         };
