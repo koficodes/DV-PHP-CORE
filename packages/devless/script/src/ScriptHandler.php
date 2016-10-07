@@ -56,14 +56,15 @@ class ScriptHandler
         $service = new Service();
         $rules = new Rules();
         $rules->requestType($payload['method']);
-        
+        $user_id = (isset($user_cred['id']))? $user_cred['id'] :'';
+        $user_token = (isset($user_cred['token']))? $user_cred['token']:'';
         //available internal params
         $EVENT = [
             'method' => $payload['method'],
             'params' => '',
             'script' => $payload['script'],
-//            'user_id' => $user_cred['id'],
-//             'user_token' => $user_cred['token'],
+            'user_id' => $user_id,
+            'user_token' => $user_token,
             'requestType' => $Dvresource,
         ];
 
@@ -76,17 +77,21 @@ EOT;
         
         $_____service_name = $payload['service_name'];
         $exec = function () use($code, $rules, $EVENT, $_____service_name) {
-            
+            //store script params temorally 
             $_____midRules = $rules;
             $_____mindEvent = $EVENT; 
            $declarationString = '';
+           //get declared vars
            if($declarationString = DataStore::getDump($_____service_name.'_script_vars')) {
-               eval($declarationString->value);
+               eval($declarationString);
            }
-           
+           //restore script params 
            $rules = $_____midRules;
            $EVENT = $_____mindEvent;
-           //next explode variables and make them available 
+           
+            //next explode variables and make them available 
+           extract($EVENT['params'], EXTR_PREFIX_ALL, 'input');
+           
            eval($code);        
         };
         

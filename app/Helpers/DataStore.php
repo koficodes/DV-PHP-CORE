@@ -233,9 +233,12 @@ class DataStore extends Helper
      */
     public static function getDump($key)
     {
-        $dump = \DB::table('devless_dump')->where('key', $key)->first();
+        if($dump = \DB::table('devless_dump')->where('key', $key)->first()) {
+            return $dump;
+        } else {
+            return null;
+        }
         
-        return $dump;
     }
     
     
