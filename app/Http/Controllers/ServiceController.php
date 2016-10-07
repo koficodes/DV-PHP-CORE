@@ -78,7 +78,13 @@ class ServiceController extends Controller
         $service->resource_access_right =
             '{"query":0,"create":0,"update":0,"delete":0,"schema":0,"script":0, "view":0}';
         $service->active = 1;
-        $service->script = 'echo "Surely silence can sometimes be the most eloquent reply.";';
+        $service->script = 'use App\Helpers\Assert as Assert;  
+$rules
+-> onQuery()
+-> onUpdate()
+-> onDelete()
+-> onCreate()
+';
 
         $connection =
             [
@@ -158,7 +164,11 @@ class ServiceController extends Controller
                 $service_name = $service->name;
                 $db = new DataStore();
                 $var_init = $this->var_init($script);
-                $db::setDump($service_name.'_script_vars', $var_init);
+                if($db::getDump($service_name.'_script_vars')){
+                    $db::updateDump($service_name.'_script_vars', $var_init);
+                } else {
+                    $db::setDump($service_name.'_script_vars', $var_init);
+                }
                 $service->script = $script;
                         
                 $service->save();
