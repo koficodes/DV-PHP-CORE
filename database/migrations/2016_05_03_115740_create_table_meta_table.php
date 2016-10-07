@@ -15,13 +15,13 @@ class CreateTableMetaTable extends Migration
         Schema::create('table_metas', function ($table) {
             $table->increments('id');
             $table->string('table_name');
-            $table->json('schema');
+            $table->text('schema');
             $table->integer('count')->nullable();
             $table->boolean('access')->nullable();
             $table->integer('service_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('services')
                    ->onDelete('cascade');
-           // $table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +33,6 @@ class CreateTableMetaTable extends Migration
     public function down()
     {
         //
-        Schema::drop('tableMeta');
+        Schema::drop('table_metas');
     }
 }

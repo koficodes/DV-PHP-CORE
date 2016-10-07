@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreateAppsTable extends Migration
+class DevlessDump extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class CreateAppsTable extends Migration
      */
     public function up()
     {
-        Schema::create('apps', function (Blueprint $table) {
+       Schema::create('devless_dump', function ($table) {
             $table->increments('id');
-            $table->string('name');
-            $table->text('description');
+            $table->string('key')->unique();
+            $table->text('value');
             $table->text('notes');
-            $table->string('token')->default(md5(uniqid()));
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateAppsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('apps');
+           Schema::drop('devless_dump');
     }
 }
