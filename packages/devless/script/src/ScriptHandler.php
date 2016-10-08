@@ -1,16 +1,11 @@
 <?php
-
 namespace Devless\Script;
-
 use App\Helpers\DataStore;
 use App\Helpers\Helper as Helper;
 use App\Helpers\Messenger as messenger;
 use App\Http\Controllers\ServiceController as Service;
 use Devless\RulesEngine\Rules;
 use Devless\Schema\DbHandler as DbHandler;
-
-
-
 class ScriptHandler
 {
     /**
@@ -34,14 +29,11 @@ class ScriptHandler
             'resource' => $json_payload['resource'],
             'method' => $method,
         ];
-
         session()->put('script_call', 'true');
         $service->resource($request, $service_name, $resource, $internal_access = true);
         session()->forget('script_call');
-
         return json_decode(json_encode(messenger::message(), true), true);
     }
-
     /**
      * script execution sandbox.
      *
@@ -56,26 +48,23 @@ class ScriptHandler
         $service = new Service();
         $rules = new Rules();
         $rules->requestType($payload['method']);
-        $user_id = (isset($user_cred['id']))? $user_cred['id'] :'';
-        $user_token = (isset($user_cred['token']))? $user_cred['token']:'';
+        $user_cred['id'] = (isset($user_cred['id']))? $user_cred['id'] :'';
+        $user_cred['token'] = (isset($user_cred['token']))? $user_cred['token'] :'';
         //available internal params
         $EVENT = [
             'method' => $payload['method'],
             'params' => '',
             'script' => $payload['script'],
-            'user_id' => $user_id,
-            'user_token' => $user_token,
+            'user_id' => $user_cred['id'],
+             'user_token' => $user_cred['token'],
             'requestType' => $Dvresource,
         ];
-
         $EVENT['params'] = (isset($payload['params'][0]['field'])) ? $payload['params'][0]['field'][0] : [];
-
 //NB: position matters here
 $code = <<<EOT
 $payload[script];
 EOT;
-        
-        $_____service_name = $payload['service_name'];
+              $_____service_name = $payload['service_name'];
         $exec = function () use($code, $rules, $EVENT, $_____service_name) {
             //store script params temorally 
             $_____midRules = $rules;

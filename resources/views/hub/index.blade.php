@@ -43,7 +43,6 @@
             </div>
             <div class="column-downloaded">
               <p class="authors"><cite>By <a href="#">{{$service['author']}}</a></cite></p>
-              
             </div>
           </div>
         </div>  
